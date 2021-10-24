@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class BookAddress {
 	public ArrayList<BookAddress> contact = new ArrayList<>();
@@ -257,6 +259,32 @@ public class BookAddress {
 			System.out.println(m.getKey() + " : " + m.getValue());
 			System.out.println("There are " + ((List<String>) m.getValue()).size() + " persons in city " + m.getKey());
 
+		}
+	}
+
+	/*
+	 * method to sort the list based on name
+	 */
+	public void sortByName() {
+		Map<String, BookAddress> map = new HashMap<String, BookAddress>();
+		for (int j = 0; j < contact.size(); j++) {
+			BookAddress object = contact.get(j);
+			map.put(object.first_name, object);
+		}
+		Map<String, BookAddress> sortedMap = map.entrySet().stream().sorted(Map.Entry.comparingByKey())
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue,
+						LinkedHashMap::new));
+
+		for (Map.Entry<String, BookAddress> entry : sortedMap.entrySet()) {
+			System.out.println("First Name:" + entry.getValue().first_name);
+			System.out.println("Last Name:" + entry.getValue().last_name);
+			System.out.println("Address:" + entry.getValue().address);
+			System.out.println("City:" + entry.getValue().city);
+			System.out.println("State:" + entry.getValue().state);
+			System.out.println("Zip:" + entry.getValue().zip);
+			System.out.println("Phone number:" + entry.getValue().phone_number);
+			System.out.println("E-mail:" + entry.getValue().email);
+			System.out.println("--------------------------------------------");
 		}
 	}
 }

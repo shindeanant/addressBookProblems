@@ -47,7 +47,7 @@ public class MultipleAddressBook {
 			System.out.println("Enter your choice\n" + "1.add contact\n" + "2.edit contact\n" + "3.Delete contact\n"
 					+ "4.Display contact\n" + "5.Display addressbook\n" + "6.Create another address book\n"
 					+ "7.Display all adressBook\n" + "8.Search for city or state\n" + "9.view person by state\n"
-					+ "10.view person by city\n" + "11.exit");
+					+ "10.view person by city\n" + "11.Sort list by name\n" + "12.exit");
 
 			int choice = sc.nextInt();
 			sc.nextLine();
@@ -82,7 +82,13 @@ public class MultipleAddressBook {
 					System.out.println("Addressbook:" + entry.getKey());
 					object1.viewPersonByCity();
 				}
-			} else if (choice == 11) // to exist from the program
+			} else if (choice == 11) {
+				for (Map.Entry<String, BookAddress> entry : multipleAddressBook.entrySet()) {
+					BookAddress object1 = entry.getValue();
+					System.out.println("Addressbook:" + entry.getKey());
+					object1.sortByName();
+				}
+			} else if (choice == 12) // to exist from the program
 				flag = false;
 			else {
 				System.out.println("Enter the Name of addressbook");
