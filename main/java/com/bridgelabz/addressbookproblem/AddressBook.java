@@ -9,11 +9,17 @@ import org.apache.logging.log4j.Logger;
 class Contactdetails {
 
 	private static final Logger LOG = LogManager.getLogger("BookAddress.class");
+	/*
+	 * Arrays Declared for Conatct
+	 */
 	Integer[] phoneNumber = new Integer[10];
 	String[] Address = new String[10];
 	String[] Firstname = new String[10];
 	String[] Lastname = new String[10];
 
+	/*
+	 * Parametered Method created
+	 */
 	public void getValue(int phonenumber, String address, String firstname, String lastname, int length, int time) {
 		int count = 0;
 
@@ -28,8 +34,18 @@ class Contactdetails {
 		LOG.info("Address" + Arrays.toString(Address));
 		LOG.info("Firstname" + Arrays.toString(Firstname));
 		LOG.info("Lastname" + Arrays.toString(Lastname));
+	}
+
+	public void replace(String name, String newname) {
+
+		boolean result = (Arrays.asList(Firstname).contains(name));
+		if (result == true) {
+			Firstname[0] = newname;
+		}
+		LOG.info("Firstname" + Arrays.toString(Firstname));
 
 	}
+
 }
 
 public class AddressBook extends Contactdetails {
@@ -69,8 +85,21 @@ public class AddressBook extends Contactdetails {
 				}
 				break;
 
+			case 2:
+				Scanner sc = new Scanner(System.in);
+				LOG.info("enter the name you want to rename");
+				String name = sc.nextLine();
+
+				Scanner next = new Scanner(System.in);
+				LOG.info("enter the new name");
+				String newname = next.nextLine();
+
+				contact.replace(name, newname);
+
+				break;
 			default:
 				break;
+
 			}
 			LOG.info("do you want to continue? 1.yes 2.No");
 			choice = value.nextInt();
