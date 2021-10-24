@@ -73,14 +73,14 @@ public class MultipleAddressBook {
 				for (Map.Entry<String, BookAddress> entry : multipleAddressBook.entrySet()) {
 					BookAddress object1 = entry.getValue();
 					System.out.println("Addressbook:" + entry.getKey());
-					object1.display_addressbook();
+					object1.viewPersonByState();
 				}
 
 			} else if (choice == 10) {
 				for (Map.Entry<String, BookAddress> entry : multipleAddressBook.entrySet()) {
 					BookAddress object1 = entry.getValue();
 					System.out.println("Addressbook:" + entry.getKey());
-					object1.display_addressbook();
+					object1.viewPersonByCity();
 				}
 			} else if (choice == 11) // to exist from the program
 				flag = false;
@@ -97,5 +97,4 @@ public class MultipleAddressBook {
 			}
 		}
 	}
-
 }
