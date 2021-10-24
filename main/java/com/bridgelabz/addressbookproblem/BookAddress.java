@@ -1,10 +1,12 @@
 package com.bridgelabz.addressbookproblem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
-public class AddressBook {
-	public ArrayList<AddressBook> contact = new ArrayList<>();
+public class BookAddress {
+	public ArrayList<BookAddress> contact = new ArrayList<>();
 	public Scanner sc = new Scanner(System.in);
 
 	// class members
@@ -19,11 +21,11 @@ public class AddressBook {
 
 	public boolean flag;
 
-	public AddressBook() {
+	public BookAddress() {
 		System.out.println("Welcome to adress book program"); // welcome message
 	}
 
-	public AddressBook(String first_name, String last_name, String address, String city, String state, String zip,
+	public BookAddress(String first_name, String last_name, String address, String city, String state, String zip,
 			String phone_number, String email) {
 		this.first_name = first_name;
 		this.last_name = last_name;
@@ -55,7 +57,7 @@ public class AddressBook {
 			String phone_number = sc.nextLine();
 			System.out.println("E-mail:");
 			String email = sc.nextLine();
-			contact.add(new AddressBook(first_name, last_name, address, city, state, zip, phone_number, email));
+			contact.add(new BookAddress(first_name, last_name, address, city, state, zip, phone_number, email));
 		}
 	}
 
@@ -65,7 +67,7 @@ public class AddressBook {
 		System.out.println("Enter the person whose contact to be displayed"); // to display desired contact
 		String name2 = sc.next();
 		for (int j = 0; j < contact.size(); j++) {
-			AddressBook object = contact.get(j);
+			BookAddress object = contact.get(j);
 			if (object.first_name.equals(name2)) {
 				flag = true;
 				System.out.println("First Name:" + object.first_name);
@@ -91,7 +93,7 @@ public class AddressBook {
 		} else {
 			System.out.println("Address book contains following contacts!!!");
 			for (int j = 0; j < contact.size(); j++) {
-				AddressBook object = contact.get(j);
+				BookAddress object = contact.get(j);
 				System.out.println("Contact details of person" + j);
 				System.out.println("first Name:" + object.first_name);
 				System.out.println("last name:" + object.last_name);
@@ -111,7 +113,7 @@ public class AddressBook {
 		String name = sc.next();
 		int flag = 0;
 		for (int j = 0; j < contact.size(); j++) {
-			AddressBook object = contact.get(j);
+			BookAddress object = contact.get(j);
 			if (object.first_name.equals(name)) {
 				flag = 1;
 				System.out.println("first Name:" + object.first_name);
@@ -173,7 +175,7 @@ public class AddressBook {
 		String name1 = sc.next();
 
 		for (int j = 0; j < contact.size(); j++) {
-			AddressBook object = contact.get(j);
+			BookAddress object = contact.get(j);
 			if (object.first_name.equals(name1)) {
 				flag = true;
 				contact.remove(object); // array list has built in method to remove objects
@@ -187,7 +189,7 @@ public class AddressBook {
 	// method to check for duplicate first name
 	public Boolean duplicateCheck(String name) {
 		for (int j = 0; j < contact.size(); j++) {
-			AddressBook object = contact.get(j);
+			BookAddress object = contact.get(j);
 			if (object.first_name.equals(name)) {
 				System.out.println("Contact already exists!!Please enter a different contact name");
 				return true;
@@ -201,11 +203,36 @@ public class AddressBook {
 	 */
 	public void search(String place) {
 		for (int j = 0; j < contact.size(); j++) {
-			AddressBook object = contact.get(j);
+			BookAddress object = contact.get(j);
 			if (object.city.equals(place) || object.state.equals(place)) {
 				System.out.println(object.first_name + " " + object.last_name);
 			}
 		}
+	}
 
+	public void viewPersonByState(String state) {
+		Map<String, String> stateMap = new HashMap<String, String>();
+		for (int j = 0; j < contact.size(); j++) {
+			BookAddress object = contact.get(j);
+			stateMap.put(object.first_name, object.state);
+		}
+		for (Map.Entry m : stateMap.entrySet()) {
+			if (m.getValue().equals(state)) {
+				System.out.println(m.getKey());
+			}
+		}
+	}
+
+	public void viewPersonByCity(String city) {
+		Map<String, String> cityMap = new HashMap<String, String>();
+		for (int j = 0; j < contact.size(); j++) {
+			BookAddress object = contact.get(j);
+			cityMap.put(object.first_name, object.city);
+		}
+		for (Map.Entry m : cityMap.entrySet()) {
+			if (m.getValue().equals(city)) {
+				System.out.println(m.getKey());
+			}
+		}
 	}
 }

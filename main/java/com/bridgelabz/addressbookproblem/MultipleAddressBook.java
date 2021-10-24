@@ -8,7 +8,7 @@ public class MultipleAddressBook {
 	public static Scanner sc = new Scanner(System.in);
 
 	// to perform different operations on contacts
-	public static void choice(int choice, AddressBook object) {
+	public static void choice(int choice, BookAddress object) {
 		switch (choice) {
 		case 1:
 			object.insertContact(); // add a new contact into addressbook
@@ -35,8 +35,8 @@ public class MultipleAddressBook {
 
 	public static void main(String[] args) {
 		// dictionary for mapping different address book with key
-		HashMap<String, AddressBook> multipleAddressBook = new HashMap<String, AddressBook>();
-		AddressBook object = new AddressBook(); // first addressbook
+		HashMap<String, BookAddress> multipleAddressBook = new HashMap<String, BookAddress>();
+		BookAddress object = new BookAddress(); // first addressbook
 
 		String addressBookName = "firstBook";
 		multipleAddressBook.put(addressBookName, object); // put the first addressbook into dictionary
@@ -55,30 +55,30 @@ public class MultipleAddressBook {
 			{
 				System.out.println("Enter the name of AddressBook to create");
 				addressBookName = sc.nextLine();
-				AddressBook object1 = new AddressBook(); // a new addressbook object is created
+				BookAddress object1 = new BookAddress(); // a new addressbook object is created
 				multipleAddressBook.put(addressBookName, object1);
 			} else if (choice == 7) {
-				for (Map.Entry<String, AddressBook> entry : multipleAddressBook.entrySet()) {
+				for (Map.Entry<String, BookAddress> entry : multipleAddressBook.entrySet()) {
 					System.out.println(entry.getKey());
 				}
 			} else if (choice == 8) {
 				System.out.println("Enter the name of city or state");
 				String place = sc.next();
 				System.out.println("Persons whose state or city is " + place);
-				for (Map.Entry<String, AddressBook> entry : multipleAddressBook.entrySet()) {
-					AddressBook object1 = entry.getValue();
+				for (Map.Entry<String, BookAddress> entry : multipleAddressBook.entrySet()) {
+					BookAddress object1 = entry.getValue();
 					object1.search(place);
 				}
 			} else if (choice == 9) {
-				for (Map.Entry<String, AddressBook> entry : multipleAddressBook.entrySet()) {
-					AddressBook object1 = entry.getValue();
+				for (Map.Entry<String, BookAddress> entry : multipleAddressBook.entrySet()) {
+					BookAddress object1 = entry.getValue();
 					System.out.println("Addressbook:" + entry.getKey());
 					object1.display_addressbook();
 				}
 
 			} else if (choice == 10) {
-				for (Map.Entry<String, AddressBook> entry : multipleAddressBook.entrySet()) {
-					AddressBook object1 = entry.getValue();
+				for (Map.Entry<String, BookAddress> entry : multipleAddressBook.entrySet()) {
+					BookAddress object1 = entry.getValue();
 					System.out.println("Addressbook:" + entry.getKey());
 					object1.display_addressbook();
 				}
@@ -97,4 +97,5 @@ public class MultipleAddressBook {
 			}
 		}
 	}
+
 }
