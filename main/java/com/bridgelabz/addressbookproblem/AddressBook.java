@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class AddressBook {
 	private static final Scanner sc = new Scanner(System.in);
-	private final Map<String, Addresses> dictionary = new HashMap<>();
+	private static final Map<String, Addresses> dictionary = new HashMap<>();
 
 	public static void main(String[] args) {
 		AddressBook addressBook = new AddressBook();
@@ -28,6 +28,10 @@ public class AddressBook {
 				System.out.println("Enter new Bookname");
 				sc.nextLine();
 				String bookName = sc.nextLine();
+				if (dictionary.containsKey(bookName)) {
+					System.out.println("Addressbook already exist");
+					break;
+				}
 				addressBook.createAddressBook(bookName);
 				addressBook.printAddressBooksNames();
 				break;
@@ -60,7 +64,6 @@ public class AddressBook {
 	}
 
 	public void printAddressBooksNames() {
-		
 		dictionary.keySet().forEach(System.out::println);
 	}
 
